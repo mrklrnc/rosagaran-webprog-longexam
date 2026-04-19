@@ -1,7 +1,18 @@
 import Button from '../../components/Button';
 import logo from '../../assets/img/nubdexchange_logo.png';
+import nuFemaleUniform from '../../assets/img/nu female unif.webp';
+import nuIdCase from '../../assets/img/nu id case.webp';
+import nuJersey from '../../assets/img/NU jersey.webp';
+import nuTshirt from '../../assets/img/NU Tshirt.webp';
 
 const AboutPage = () => {
+  const categoryImages = [
+    { src: nuFemaleUniform, alt: 'NU women uniform set' },
+    { src: nuJersey, alt: 'NU varsity jersey' },
+    { src: nuIdCase, alt: 'NU ID card holder' },
+    { src: nuTshirt, alt: 'NU logo t-shirt' },
+  ];
+
   return (
     <div className="flex w-full flex-col gap-6">
       <section className="border-y-2 border-zinc-900 bg-zinc-50 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
@@ -106,18 +117,18 @@ const AboutPage = () => {
               Category Grid
             </p>
             <div className="mt-5 grid gap-4 sm:grid-cols-2">
-              <div className="flex aspect-square items-center justify-center rounded-[1.25rem] bg-zinc-200">
-                <div className="h-12 w-12 border-2 border-zinc-300 bg-zinc-100" />
-              </div>
-              <div className="flex aspect-square items-center justify-center rounded-[1.25rem] bg-zinc-200">
-                <div className="h-12 w-12 border-2 border-zinc-300 bg-zinc-100" />
-              </div>
-              <div className="flex aspect-square items-center justify-center rounded-[1.25rem] bg-zinc-200">
-                <div className="h-12 w-12 border-2 border-zinc-300 bg-zinc-100" />
-              </div>
-              <div className="flex aspect-square items-center justify-center rounded-[1.25rem] bg-zinc-200">
-                <div className="h-12 w-12 border-2 border-zinc-300 bg-zinc-100" />
-              </div>
+              {categoryImages.map((image) => (
+                <div
+                  key={image.alt}
+                  className="overflow-hidden rounded-[1.25rem] border border-zinc-200 bg-zinc-200"
+                >
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    className="aspect-square h-full w-full object-cover"
+                  />
+                </div>
+              ))}
             </div>
             <Button to="/products" className="mt-5">View Products</Button>
           </div>

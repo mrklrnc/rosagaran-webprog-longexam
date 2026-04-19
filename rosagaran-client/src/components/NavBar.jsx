@@ -15,6 +15,14 @@ const navLinkClassName = ({ isActive }) =>
       : 'border-transparent text-zinc-500 hover:border-zinc-900 hover:bg-zinc-50 hover:text-zinc-900',
   ].join(' ');
 
+const authLinkClassName = ({ isActive }) =>
+  [
+    'rounded-full border-2 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] transition',
+    isActive
+      ? 'border-zinc-900 bg-zinc-900 text-zinc-50'
+      : 'border-zinc-900 bg-zinc-50 text-zinc-900 hover:bg-zinc-200',
+  ].join(' ');
+
 const NavBar = () => {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b-2 border-zinc-900 bg-zinc-100/95 backdrop-blur">
@@ -26,13 +34,22 @@ const NavBar = () => {
           </div>
         </NavLink>
 
-        <nav className="hidden items-center gap-2 md:flex">
+        <nav className="hidden items-center gap-2 md:flex" aria-label="Primary navigation">
           {links.map((link) => (
             <NavLink key={link.to} to={link.to} end={link.to === '/'} className={navLinkClassName}>
               {link.label}
             </NavLink>
           ))}
-        </nav>  
+        </nav>
+
+        <nav className="flex items-center gap-2" aria-label="Account">
+          <NavLink to="/auth/signin" className={authLinkClassName}>
+            Sign In
+          </NavLink>
+          <NavLink to="/auth/signup" className={authLinkClassName}>
+            Sign Up
+          </NavLink>
+        </nav>
       </div>
     </header>
   );

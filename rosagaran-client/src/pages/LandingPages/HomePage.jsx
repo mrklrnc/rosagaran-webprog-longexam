@@ -1,7 +1,34 @@
 import Button from '../../components/Button';
 import banner from '../../assets/img/nu_bulldogex_banner.jpg';
+import nuFemaleUniform from '../../assets/img/nu female unif.webp';
+import nuTshirt from '../../assets/img/NU Tshirt.webp';
+import nuIdCase from '../../assets/img/nu id case.webp';
 
 const HomePage = () => {
+    const shopSections = [
+        {
+            title: 'Uniforms',
+            description:
+                'Uniforms for different courses and departments, including nursing, engineering, and more.',
+            image: nuFemaleUniform,
+            alt: 'NU uniforms',
+        },
+        {
+            title: 'Tshirts',
+            description:
+                'Tshirt merch for different courses, organizations, and events around campus.',
+            image: nuTshirt,
+            alt: 'NU tshirts',
+        },
+        {
+            title: 'School Supplies',
+            description:
+                'Id card holders, lanyards, and other essentials to keep you organized and ready for campus life.',
+            image: nuIdCase,
+            alt: 'NU school supplies',
+        },
+    ];
+
     return (
         <div className="flex w-full flex-col gap-6">
             <section className="relative min-h-[28rem] overflow-hidden border-y-2 border-zinc-900 bg-zinc-900 px-4 py-10 sm:px-6 lg:px-8">
@@ -81,40 +108,24 @@ const HomePage = () => {
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-3">
-                    <article className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-4">
-                        <div className="flex aspect-4/3 items-center justify-center rounded-[1.25rem] bg-zinc-200">
-                            <div className="h-12 w-12 border-2 border-zinc-300 bg-zinc-100" />
-                        </div>
-                        <h3 className="mt-4 text-lg font-semibold text-zinc-900">Daily Essentials</h3>
-                        <p className="mt-3 text-sm leading-6 text-zinc-600">
-                            Bags, tumblers, lanyards, and items used every school day.
-                        </p>
-                        <Button to="/products" className="mt-4" variant="primary">View Products</Button>
-                    </article>
-
-                    <article className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-4">
-                        <div className="flex aspect-4/3 items-center justify-center rounded-[1.25rem] bg-zinc-200">
-                            <div className="h-12 w-12 border-2 border-zinc-300 bg-zinc-100" />
-                        </div>
-                        <h3 className="mt-4 text-lg font-semibold text-zinc-900">Study Supplies</h3>
-                        <p className="mt-3 text-sm leading-6 text-zinc-600">
-                            Notes, desk tools, and study kits for class and review weeks.
-                        </p>
-                        <Button to="/products" className="mt-4" variant="primary">Shop Supplies</Button>
-                    </article>
-
-                    <article className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-4">
-                        <div className="flex aspect-4/3 items-center justify-center rounded-[1.25rem] bg-zinc-200">
-                            <div className="h-12 w-12 border-2 border-zinc-300 bg-zinc-100" />
-                        </div>
-                        <h3 className="mt-4 text-lg font-semibold text-zinc-900">Campus Apparel</h3>
-                        <p className="mt-3 text-sm leading-6 text-zinc-600">
-                            Comfortable pieces for class days, commute days, and weekends.
-                        </p>
-                        <Button to="/products" className="mt-4" variant="primary">
-                            View Apparel
-                        </Button>
-                    </article>
+                    {shopSections.map((section) => (
+                        <article key={section.title} className="rounded-3xl border-2 border-zinc-900 bg-zinc-100 p-4">
+                            <div className="overflow-hidden rounded-[1.25rem] bg-zinc-200">
+                                <img
+                                    src={section.image}
+                                    alt={section.alt}
+                                    className="aspect-4/3 h-full w-full object-cover"
+                                />
+                            </div>
+                            <h3 className="mt-4 text-lg font-semibold text-zinc-900">{section.title}</h3>
+                            <p className="mt-3 text-sm leading-6 text-zinc-600">
+                                {section.description}
+                            </p>
+                            <Button to="/products" className="mt-4" variant="primary">
+                                View Products
+                            </Button>
+                        </article>
+                    ))}
                 </div>
             </section>
         </div>
